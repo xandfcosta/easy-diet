@@ -70,10 +70,13 @@ export function SearchMeal() {
   const [searchList, useSearchList] = useState([]);
 
   const searchForMealName = (thisMealName) => {
-    const link = `http://127.0.0.1:8000/search_meal/${thisMealName}`;
-    axios.get(link).then((res) => {
-      useSearchList(res.data);
-    });
+    axios
+      .get(`http://localhost:3000/search_meal/${thisMealName}`)
+      .then((res) => {
+        useSearchList(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
   };
 
   const createListItem = ({ index, data, style }) => {
